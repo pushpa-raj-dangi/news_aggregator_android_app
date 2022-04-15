@@ -1,0 +1,225 @@
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f5f5"
+    android:clipToPadding="false"
+    android:scrollbars="none"
+    android:scrollingCache="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp"
+        android:orientation="vertical">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15.6dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="115.2dp"
+                    android:layout_height="134.4dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/blogfeed_imageone" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:lineSpacingExtra="2.6sp"
+
+                            android:text="#entertainment"
+                            android:textColor="#ffffff"
+                            android:textSize="13.4sp" />
+
+                        <TextView
+                            android:layout_width="85dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="15.4dp"
+                            android:layout_marginTop="7dp"
+                            android:layout_marginRight="15.4dp"
+                            android:layout_marginBottom="15.4dp"
+                            android:background="@drawable/edit_line_rect"
+                            android:gravity="center_horizontal"
+                            android:lineSpacingExtra="1.5sp"
+                            android:text="Follow"
+                            android:textColor="#ffffff"
+                            android:textSize="11.5sp" />
+
+
+                    </LinearLayout>
+
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="115.2dp"
+                    android:layout_height="134.4dp"
+                    android:layout_marginLeft="15dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/blogfeed_imagetwo" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:lineSpacingExtra="2.6sp"
+
+                            android:text="#sport"
+                            android:textColor="#ffffff"
+                            android:textSize="13.4sp" />
+
+                        <TextView
+                            android:layout_width="85dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="15.4dp"
+                            android:layout_marginTop="7dp"
+                            android:layout_marginRight="15.4dp"
+                            android:layout_marginBottom="15.4dp"
+                            android:background="@drawable/edit_line_rect"
+                            android:gravity="center_horizontal"
+                            android:lineSpacingExtra="1.5sp"
+                            android:text="Follow"
+                            android:textColor="#ffffff"
+                            android:textSize="11.5sp" />
+
+
+                    </LinearLayout>
+
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="115.2dp"
+                    android:layout_height="134.4dp"
+                    android:layout_marginLeft="15dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/blogfeed_imagethree" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:lineSpacingExtra="2.6sp"
+
+                            android:text="#urban"
+                            android:textColor="#ffffff"
+                            android:textSize="13.4sp" />
+
+                        <TextView
+                            android:layout_width="85dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="15.4dp"
+                            android:layout_marginTop="7dp"
+                            android:layout_marginRight="15.4dp"
+                            android:layout_marginBottom="15.4dp"
+                            android:background="@drawable/edit_line_rect"
+                            android:gravity="center_horizontal"
+                            android:lineSpacingExtra="1.5sp"
+                            android:text="Follow"
+                            android:textColor="#ffffff"
+                            android:textSize="11.5sp" />
+
+
+                    </LinearLayout>
+
+
+                </FrameLayout>
+
+
+            </LinearLayout>
+
+
+        </HorizontalScrollView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/bg_gradient_soft" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/spacing_large"
+            android:paddingRight="@dimen/spacing_large">
+
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="18.4sp"
+                android:textStyle="bold"
+                android:textColor="#131314"
+                android:lineSpacingExtra="2.6sp"
+                android:text="Health"
+                tools:ignore="MissingClass" />
+
+            <Button
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minWidth="0dp"
+                android:text="See All"
+                android:textColor="@color/grey_60" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/pRv"/>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
