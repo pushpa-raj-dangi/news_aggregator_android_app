@@ -36,8 +36,8 @@ import retrofit2.Response;
 public class HomeFragment extends Fragment {
     DbHelper dbHelper;
     private RecyclerView recyclerView;
-//    String API_KEY = "cfe309f934664d619b81486921cb83eb";
-String API_KEY = "0677fa6bd45648a8ac8ab8d00e1abfc8";
+    //    String API_KEY = "cfe309f934664d619b81486921cb83eb";
+    String API_KEY = "0677fa6bd45648a8ac8ab8d00e1abfc8";
 
     ArrayList<News> news;
     String country  = "us";
@@ -68,9 +68,6 @@ String API_KEY = "0677fa6bd45648a8ac8ab8d00e1abfc8";
         dialog = new ProgressDialog(getContext());
         dialog.setTitle("Please wait...");
         dialog.show();
-
-
-
         news = new ArrayList<>();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -108,12 +105,10 @@ String API_KEY = "0677fa6bd45648a8ac8ab8d00e1abfc8";
 
                 @Override
                 public void onFailure(Call<MainNews> call, Throwable t) {
-                    Log.e("TAG", "onFailure: ");
                 }
             });
         }else{
             news.addAll(dbHelper.retrieveData());
-
             adapter.notifyDataSetChanged();
 
             dialog.dismiss();
@@ -133,8 +128,6 @@ String API_KEY = "0677fa6bd45648a8ac8ab8d00e1abfc8";
 
         try {
             InetAddress ipAddr = InetAddress.getByName("https://api.androidhive.info/");
-            Log.e("Khali chha ta",""+ipAddr );
-            //You can replace it with your name
             return !ipAddr.equals("");
 
         } catch (Exception e) {

@@ -26,8 +26,6 @@ Context context ;
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        Log.e("TAG", "DbHelper: instance created" );
-
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS " +
                 "news(id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "title VARCHAR(255)," +
@@ -69,8 +67,6 @@ Context context ;
     }
 
     public void insertDataToDb(News news) {
-            Log.e("TAG", "removeFromFav: "+ news.getTitle() );
-        Log.e("TAG", "insertDataToDb: Success" );
         ContentValues cv = new ContentValues();
         cv.put("title", news.getTitle());
         cv.put("url",news.getTitle());
@@ -103,18 +99,10 @@ Context context ;
         }
 
 
-    public long update(String  favorite, String val) {
-
-        ContentValues contentValues= new ContentValues();
-        contentValues.put("favStatus",val);
-
-        return db.update("favorite_news", contentValues,"title=?",new String[] {favorite});
-    }
     public long delete(String  title) {
        return db.delete("favorite_news","title=?",new String[]{title});
 
     }
-
 
     public ArrayList<News> retrieveData() {
         ArrayList<News> data = new ArrayList<>();
@@ -137,8 +125,6 @@ Context context ;
         }
         return data;
     }
-
-
 
     public ArrayList<News> getFavoriteNews() {
         ArrayList<News> data = new ArrayList<>();
@@ -164,7 +150,6 @@ Context context ;
     public boolean checkIfExist(String title) {
         Cursor csr = db.query("favorite_news",null,"title" + "=? ",new String[]{title},null,null,null);
             boolean rv = (csr.getCount() > 0);
-        Log.e("TAG", "checkIfExist:"+rv+"chha &&&&&&&&&" );
             csr.close();
             return rv;
 

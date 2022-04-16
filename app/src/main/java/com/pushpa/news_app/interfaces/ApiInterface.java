@@ -23,6 +23,12 @@ public interface ApiInterface {
             @Query("pageSize") int pageSize,
             @Query("apiKey") String apiKey
     );
+    @GET("everything")
+    Call<MainNews> searchNews(
+            @Query("q") String query,
+            @Query("apiKey") String apiKey
+    );
+
     @GET("https://newsapi.org/v2/everything?q=nepal&from=2022-04-14&sortBy=popularity&apiKey=0677fa6bd45648a8ac8ab8d00e1abfc8")
     Call<MainNews> getNearest();
     @GET("https://newsapi.org/v2/everything?domains=khabarhub.com,thenextweb.com&apiKey=0677fa6bd45648a8ac8ab8d00e1abfc8")

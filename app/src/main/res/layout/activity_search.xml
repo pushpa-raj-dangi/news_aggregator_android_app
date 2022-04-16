@@ -44,6 +44,7 @@
         <androidx.appcompat.widget.SearchView
             android:layout_width="match_parent"
             app:defaultQueryHint="Search..."
+            app:iconifiedByDefault="false"
             android:id="@+id/search_view"
             android:layout_height="?attr/actionBarSize"/>
     </androidx.cardview.widget.CardView>
@@ -51,16 +52,16 @@
         android:layout_marginTop="160dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/favRv">
+        android:id="@+id/sRv">
 
     </androidx.recyclerview.widget.RecyclerView>
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnNav"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom"
-        android:background="@color/white"
-        app:menu="@menu/menu_bottom_blogfeed" />
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/btnNav"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_gravity="bottom"-->
+<!--        android:background="@color/white"-->
+<!--        app:menu="@menu/menu_bottom_blogfeed" />-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

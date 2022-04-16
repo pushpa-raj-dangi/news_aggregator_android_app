@@ -92,8 +92,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             public void unLiked(LikeButton likeButton) {
                 dbHelper.addToFav(newNews);
 
-
-
             }
         });
 
