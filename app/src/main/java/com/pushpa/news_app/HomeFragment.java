@@ -1,5 +1,6 @@
 package com.pushpa.news_app;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -35,7 +36,9 @@ import retrofit2.Response;
 public class HomeFragment extends Fragment {
     DbHelper dbHelper;
     private RecyclerView recyclerView;
-    String API_KEY = "cfe309f934664d619b81486921cb83eb";
+//    String API_KEY = "cfe309f934664d619b81486921cb83eb";
+String API_KEY = "0677fa6bd45648a8ac8ab8d00e1abfc8";
+
     ArrayList<News> news;
     String country  = "us";
     NewsAdapter adapter;
@@ -86,6 +89,7 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void getNews() {
         if(isNetworkConnected()) {
             ApiUtils.getApiInterface().getNews(country, 10, API_KEY).enqueue(new Callback<MainNews>() {

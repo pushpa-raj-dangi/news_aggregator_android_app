@@ -66,9 +66,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             holder.favorite.setBackgroundResource(R.drawable.favorite);
 
         }
-
         holder.favorite.setOnClickListener(new View.OnClickListener() {
             int i =1;
+
             News newNews = new
                     News(
                     news.get(position).getAuthor(),
@@ -81,14 +81,19 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
                     );
             @Override
             public void onClick(View view) {
-                notifyDataSetChanged();
-                i++;
-                if(i%2==0){
-                    holder.favorite.setBackgroundResource(R.drawable.favorite);
-                    dbHelper.addToFav(newNews);
-                    Log.e("TAG", "onClick: "+i );
-                }else{
+              ++i;
+                dbHelper.addToFav(newNews);
+
+                if(i%2==0  ){
                     holder.favorite.setBackgroundResource(R.drawable.not_favorite);
+                    notifyDataSetChanged();
+
+                    Log.e("TAG", "You clicked: "+i );
+                }else{
+                    Log.e("TAG", "onClick: "+i );
+                    notifyDataSetChanged();
+
+                    holder.favorite.setBackgroundResource(R.drawable.favorite);
                     if(dbHelper.delete(newNews.getTitle())>0){
                         Toast.makeText(context, "Favorite removed", Toast.LENGTH_SHORT).show();
                     };
@@ -134,5 +139,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         }
 
 
+    }
+    public void updateAdapter(ArrayList<News> mDataList) {
+        this.news = mDataList;
+        notifyDataSetChanged();
     }
 }

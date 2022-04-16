@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,6 +33,8 @@ public class NearbyActivity extends AppCompatActivity {
     String country  = "nepal";
     NewsAdapter adapter;
     private BottomNavigationView btmNav;
+    ProgressDialog dialog;
+
 
 
 
@@ -43,6 +47,10 @@ public class NearbyActivity extends AppCompatActivity {
 
 
         news = new ArrayList<>();
+
+        dialog = new ProgressDialog(NearbyActivity.this);
+        dialog.setTitle("Please wait...");
+        dialog.show();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(NearbyActivity.this));
         adapter = new NewsAdapter(NearbyActivity.this,news);
@@ -84,12 +92,14 @@ public class NearbyActivity extends AppCompatActivity {
         String countryName = tm.getNetworkCountryIso();
 
         ApiUtils.getApiInterface().getNearest().enqueue(new Callback<MainNews>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(Call<MainNews> call, Response<MainNews> response) {
                 if(response.isSuccessful()){
 
                     news.addAll(response.body().getArticles());
                     adapter.notifyDataSetChanged();
+                    dialog.dismiss();
                 }
             }
 

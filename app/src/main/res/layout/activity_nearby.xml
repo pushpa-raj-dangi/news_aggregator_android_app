@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/tools"
     android:background="@color/grey_10"
     android:fitsSystemWindows="true">
 
@@ -36,8 +37,9 @@
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
         />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="120dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/recentRv">

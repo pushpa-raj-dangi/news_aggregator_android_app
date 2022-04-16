@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,6 +32,8 @@ public class RecentActivity extends AppCompatActivity {
     ArrayList<News> news;
     String country  = "nepal";
     NewsAdapter adapter;
+    ProgressDialog dialog;
+
     private BottomNavigationView btmNav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +42,16 @@ public class RecentActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recentRv);
 
-
+        dialog = new ProgressDialog(RecentActivity.this);
+        dialog.setTitle("Please wait...");
+        dialog.show();
         news = new ArrayList<>();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(RecentActivity.this));
         adapter = new NewsAdapter(RecentActivity.this,news);
         recyclerView.setAdapter(adapter);
         btmNav = findViewById(R.id.btnNav);
+
 
         getNews();
         btmNav.setOnNavigationItemSelectedListener(new
@@ -79,12 +86,15 @@ public class RecentActivity extends AppCompatActivity {
         String countryName = tm.getNetworkCountryIso();
 
         ApiUtils.getApiInterface().getRecent().enqueue(new Callback<MainNews>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(Call<MainNews> call, Response<MainNews> response) {
                 if(response.isSuccessful()){
 
                     news.addAll(response.body().getArticles());
                     adapter.notifyDataSetChanged();
+                    dialog.dismiss();
+
                 }
             }
 
