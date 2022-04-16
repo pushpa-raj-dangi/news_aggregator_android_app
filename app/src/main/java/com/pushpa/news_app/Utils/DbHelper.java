@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.pushpa.news_app.models.News;
 
@@ -14,10 +15,11 @@ import java.util.ArrayList;
 
 public class DbHelper extends SQLiteOpenHelper {
     private SQLiteDatabase db;
-
+Context context ;
 
     public DbHelper(Context c){
         super(c,"news.db",null,1);
+        this.context = c;
         db = getWritableDatabase();
     }
 
@@ -82,23 +84,24 @@ public class DbHelper extends SQLiteOpenHelper {
             Log.e("TAG", "insertDataToDb: Success" );
             if(checkIfExist(news.getTitle())){
                 delete(news.getTitle());
-            }
-            ContentValues cv = new ContentValues();
-            cv.put("title", news.getTitle());
-            cv.put("url",news.getLink());
-            cv.put("publishedAt", news.getPublishedAt());
-            cv.put("description",news.getDescription());
-            cv.put("urlToImage",news.getImage());
-            cv.put("favStatus","1");
-            cv.put("author",news.getAuthor());
-            db.insert("favorite_news", null, cv);
-        }
-        public int removeFromFav(News news) {
-            ContentValues contentValues= new ContentValues();
-            contentValues.put("favStatus",0);
+                Log.e("TAG", "addToFav:deleted" );
+                Toast.makeText(this.context, "Favorite removed", Toast.LENGTH_SHORT).show();
+            }else{
+                ContentValues cv = new ContentValues();
+                cv.put("title", news.getTitle());
+                cv.put("url",news.getLink());
+                cv.put("publishedAt", news.getPublishedAt());
+                cv.put("description",news.getDescription());
+                cv.put("urlToImage",news.getImage());
+                cv.put("favStatus","1");
+                cv.put("author",news.getAuthor());
+                db.insert("favorite_news", null, cv);
+                Toast.makeText(this.context, "Favorite added Successfully", Toast.LENGTH_SHORT).show();
 
-            return db.update("favorite_news", contentValues,"title=?",new String[] {news.getTitle()});
+            }
+
         }
+
 
     public long update(String  favorite, String val) {
 
@@ -115,23 +118,27 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public ArrayList<News> retrieveData() {
         ArrayList<News> data = new ArrayList<>();
-        String query = "SELECT * FROM news";
+        String query = "SELECT * FROM favorite_news";
         Cursor cursor = db.rawQuery(query,null);
         if(cursor.moveToFirst()){
             do{
                 News st = new News();
                 st.setTitle(cursor.getString(1));
-                st.setAuthor(cursor.getString(4));
-                st.setLink(cursor.getString(3));
-                st.setImage(cursor.getString(2));
-                st.setTime(cursor.getString(5));
-                st.setDescription(cursor.getString(6));
+                st.setLink(cursor.getString(2));
+                st.setTime(cursor.getString(3));
+                st.setDescription(cursor.getString(4));
+                st.setImage(cursor.getString(5));
+                st.setFavoriteStatus(cursor.getString(6));
+                st.setAuthor(cursor.getString(7));
+
                 data.add(st);
 
             }while(cursor.moveToNext());
         }
         return data;
     }
+
+
 
     public ArrayList<News> getFavoriteNews() {
         ArrayList<News> data = new ArrayList<>();
@@ -157,6 +164,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public boolean checkIfExist(String title) {
         Cursor csr = db.query("favorite_news",null,"title" + "=? ",new String[]{title},null,null,null);
             boolean rv = (csr.getCount() > 0);
+        Log.e("TAG", "checkIfExist:"+rv+"chha &&&&&&&&&" );
             csr.close();
             return rv;
 

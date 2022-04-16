@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         btmNav = findViewById(R.id.btnNav);
-        toolbar.setNavigationIcon(R.drawable.ic_menu__white_24dp);
+        toolbar.setNavigationIcon(R.drawable.logo);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Mero News");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -48,8 +49,7 @@ public class MainActivity extends AppCompatActivity {
         tab_layout = findViewById(R.id.tab_layout);
         tab_layout.setupWithViewPager(view_pager);
 
-
-
+        btmNav.setActivated(false);
         btmNav.setOnNavigationItemSelectedListener(new
                 BottomNavigationView.OnNavigationItemSelectedListener()  {
                 @Override
@@ -101,7 +101,8 @@ public class MainActivity extends AppCompatActivity {
 
             finish();
         } else {
-            Toast.makeText(getApplicationContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), item.getTitle()+"is what", Toast.LENGTH_SHORT).show();
+           startActivity(new Intent(MainActivity.this,SearchActivity.class));
         }
         return super.onOptionsItemSelected(item);}
 

@@ -26,7 +26,7 @@ public class RecentNewsAdapter extends RecyclerView.Adapter<RecentNewsAdapter.My
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View conv = LayoutInflater.from(context).inflate(R.layout.custom_list,null);
+        View conv = LayoutInflater.from(context).inflate(R.layout.favorite_list,null);
         MyViewHolder myViewHolder  = new MyViewHolder(conv);
 
         return myViewHolder;
@@ -34,7 +34,7 @@ public class RecentNewsAdapter extends RecyclerView.Adapter<RecentNewsAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        TextView tv =  holder.itemView.findViewById(R.id.cTitle);
+        TextView tv =  holder.itemView.findViewById(R.id.fTitle);
 
         tv.setText(news.get(position).getTitle());
 

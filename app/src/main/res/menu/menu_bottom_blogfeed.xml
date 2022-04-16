@@ -15,4 +15,5 @@
         android:iconTint="@color/white"
         android:title="Nearby" />
 
+
 </menu>

@@ -33,29 +33,7 @@
                 android:id="@+id/pImage"
                 android:scaleType="centerCrop" />
 
-                <LinearLayout
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="right|bottom"
-                    android:background="@drawable/shape"
 
-                    android:layout_marginRight="20dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="0dp">
-
-                    <Button
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:id="@+id/favorite"
-                        android:background="@drawable/not_favorite" />
-<!--                    <com.like.LikeButton-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        app:icon_size="25dp"-->
-<!--                        app:icon_type="heart"-->
-<!--                        />-->
-                </LinearLayout>
 
             </FrameLayout>
 
@@ -147,7 +125,24 @@
                             </LinearLayout>
 
                         </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="right|bottom"
+                            android:layout_marginRight="20dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="0dp">
+                            <com.like.LikeButton
+                                app:icon_type="heart"
+                                app:icon_size="25dp"
+                                android:id="@+id/favorite"
+                                android:layout_width="wrap_content"
 
+                                android:layout_height="wrap_content"/>
+
+
+
+                        </LinearLayout>
 
 
 

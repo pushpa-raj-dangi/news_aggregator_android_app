@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MyWebViewActivity">
-    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/grey_10"
@@ -31,6 +31,14 @@
 
 
         </com.google.android.material.appbar.AppBarLayout>
+        <ProgressBar
+                android:layout_height="100dp"
+            android:layout_width="match_parent"
+                android:layout_gravity="center"
+            android:id="@+id/progress_load"
+            android:background="@drawable/splash"
+
+            />
 
         <WebView
             android:layout_width="match_parent"

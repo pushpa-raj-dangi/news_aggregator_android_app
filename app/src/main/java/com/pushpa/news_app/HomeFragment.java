@@ -113,6 +113,7 @@ String API_KEY = "0677fa6bd45648a8ac8ab8d00e1abfc8";
             });
         }else{
             news.addAll(dbHelper.retrieveData());
+
             adapter.notifyDataSetChanged();
 
             dialog.dismiss();

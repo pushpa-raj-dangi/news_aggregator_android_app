@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.pushpa.news_app.Utils.ApiUtils;
 import com.pushpa.news_app.Utils.DbHelper;
+import com.pushpa.news_app.adapters.FavoriteAdapter;
 import com.pushpa.news_app.adapters.NewsAdapter;
 import com.pushpa.news_app.models.MainNews;
 import com.pushpa.news_app.models.News;
@@ -29,22 +30,22 @@ public class FavoriteActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private  DbHelper dbHelper;
     ArrayList<News> news;
-    NewsAdapter adapter;
+    FavoriteAdapter adapter;
     private BottomNavigationView btmNav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite);
 
-        recyclerView = findViewById(R.id.recentRv);
+        recyclerView = findViewById(R.id.favRv);
         dbHelper  = new DbHelper(this);
 
         news = dbHelper.getFavoriteNews();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(FavoriteActivity.this));
-        adapter = new NewsAdapter(FavoriteActivity.this,news);
+        adapter = new FavoriteAdapter(FavoriteActivity.this,news);
         recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        adapter.updateRecycler(dbHelper.retrieveData());
         btmNav = findViewById(R.id.btnNav);
 
         btmNav.setOnNavigationItemSelectedListener(new

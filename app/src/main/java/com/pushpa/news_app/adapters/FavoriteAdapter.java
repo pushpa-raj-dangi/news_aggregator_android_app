@@ -1,5 +1,6 @@
 package com.pushpa.news_app.adapters;
 
+import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -28,12 +29,12 @@ import com.pushpa.news_app.models.News;
 
 import java.util.ArrayList;
 
-public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
+public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHolder> {
     Context context;
     DbHelper dbHelper;
     ArrayList<News> news;
 
-    public NewsAdapter(Context context, ArrayList<News> news) {
+    public FavoriteAdapter(Context context, ArrayList<News> news) {
         this.context = context;
         this.news = news;
     }
@@ -41,7 +42,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.list_item,null,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.favorite_list,null,false);
 
         return new  ViewHolder(v);
     }
@@ -60,7 +61,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             }
         });
 
-        holder.pTime.setText(news.get(position).getPublishedAt());
         holder.pTitle.setText(news.get(position).getTitle());
         holder.pAuthor.setText(news.get(position).getAuthor());
         Log.e("TAG", "fav status: "+news.get(position).getFavoriteStatus() );
@@ -72,26 +72,27 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         }
 
         News newNews = new
-                    News(
-                    news.get(position).getAuthor(),
-                    news.get(position).getTitle(),
-                    news.get(position).getPublishedAt(),
-                    news.get(position).getDescription(),
-                    news.get(position).getLink(),
-                    news.get(position).getImage(),
-                    news.get(position).getFavoriteStatus()
-                    );
+                News(
+                news.get(position).getAuthor(),
+                news.get(position).getTitle(),
+                news.get(position).getPublishedAt(),
+                news.get(position).getDescription(),
+                news.get(position).getLink(),
+                news.get(position).getImage(),
+                news.get(position).getFavoriteStatus()
+        );
 
         holder.favorite.setOnLikeListener(new OnLikeListener() {
             @Override
             public void liked(LikeButton likeButton) {
                 dbHelper.addToFav(newNews);
+                updateRecycler(dbHelper.getFavoriteNews());
             }
 
             @Override
             public void unLiked(LikeButton likeButton) {
                 dbHelper.addToFav(newNews);
-
+                updateRecycler(dbHelper.getFavoriteNews());
 
 
             }
@@ -120,12 +121,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            pTime = itemView.findViewById(R.id.pTime);
-            imageView = itemView.findViewById(R.id.pImage);
-            pAuthor = itemView.findViewById(R.id.pAuthor);
-            pTitle = itemView.findViewById(R.id.pTitle);
-            cardView = itemView.findViewById(R.id.pCard);
-            favorite = itemView.findViewById(R.id.favorite);
+            imageView = itemView.findViewById(R.id.fImage);
+            pAuthor = itemView.findViewById(R.id.fAuthor);
+            pTitle = itemView.findViewById(R.id.fTitle);
+            cardView = itemView.findViewById(R.id.fCard);
+            favorite = itemView.findViewById(R.id.fFavorite);
 
 
             dbHelper = new DbHelper(context);

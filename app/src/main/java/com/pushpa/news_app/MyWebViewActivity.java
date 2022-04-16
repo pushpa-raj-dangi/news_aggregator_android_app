@@ -13,6 +13,7 @@ import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 public class MyWebViewActivity extends AppCompatActivity {
 
@@ -21,6 +22,8 @@ public class MyWebViewActivity extends AppCompatActivity {
     boolean loadingFinished = true;
     boolean redirect = false;
     ProgressDialog dialog;
+    ProgressDialog mProgressDialog;
+    ProgressBar mprogress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,43 +33,9 @@ public class MyWebViewActivity extends AppCompatActivity {
         webView = findViewById(R.id.webView);
         toolbar = findViewById(R.id.toolbar1);
         dialog = new ProgressDialog(MyWebViewActivity.this);
+        mprogress = findViewById(R.id.progress_load);
         dialog.setTitle("Please wait...");
 
-
-
-        webView.setWebViewClient(new WebViewClient() {
-
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String urlNewString) {
-                if (!loadingFinished) {
-                    redirect = true;
-                }
-
-                loadingFinished = false;
-                view.loadUrl(urlNewString);
-                return true;
-            }
-
-            @Override
-            public void onPageStarted(WebView view, String url, Bitmap facIcon) {
-                loadingFinished = false;
-                dialog.show();
-            }
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                if(!redirect){
-                    loadingFinished = true;
-                }
-
-                if(loadingFinished && !redirect){
-                    dialog.dismiss();
-                } else{
-                    redirect = false;
-                }
-
-            }
-        });
 
 
         setSupportActionBar(toolbar);
@@ -74,12 +43,36 @@ public class MyWebViewActivity extends AppCompatActivity {
 //        getSupportActionBar().setLogo(R.drawable.ic_launcher_background);
         getSupportActionBar().setIcon(R.drawable.left_arrow);
 
+
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.setMax(100);
+        mProgressDialog.show();
+
         toolbar.setTitle("Mero News");
         Intent intent = getIntent();
         String url = intent.getStringExtra("url");
         webView.setWebViewClient(new WebViewClient());
         Log.e("TAG", "onCreate: "+url );
         webView.loadUrl(url);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setWebViewClient(new WebViewClient());
+
+        webView.setWebChromeClient(new WebChromeClient(){
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                mprogress.setProgress(newProgress);
+
+                mProgressDialog.setProgress(newProgress );
+                if(newProgress == 100)
+                {
+                    mProgressDialog.dismiss();
+                }
+            }
+        });
         toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
