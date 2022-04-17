@@ -33,7 +33,7 @@ Context context ;
                 "publishedAt varchar(250)," +
                 "description VARCHAR(1200)," +
                 " urlToImage varchar(255)," +
-                "favStatus text not null default '0',"+
+                "favStatus text not null default '',"+
                 " author VARCHAR(240) )");
 
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS " +

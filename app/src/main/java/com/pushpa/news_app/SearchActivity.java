@@ -70,7 +70,7 @@ public class SearchActivity extends AppCompatActivity {
 
     }
     private void searchNews(String query){
-        ApiUtils.getApiInterface().searchNews(query,"cfe309f934664d619b81486921cb83eb").enqueue(new Callback<MainNews>() {
+        ApiUtils.getApiInterface().searchNews(query,"5af4e37fb3c8468bb18fe42149927742").enqueue(new Callback<MainNews>() {
 
             @Override
             public void onResponse(@NonNull Call<MainNews> call, @NonNull Response<MainNews> response) {

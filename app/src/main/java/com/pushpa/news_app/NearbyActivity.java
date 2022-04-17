@@ -28,7 +28,7 @@ import retrofit2.Response;
 
 public class NearbyActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    String API_KEY = "0677fa6bd45648a8ac8ab8d00e1abfc8";
+    String API_KEY = "5af4e37fb3c8468bb18fe42149927742";
     ArrayList<News> news;
     String country  = "nepal";
     NewsAdapter adapter;
